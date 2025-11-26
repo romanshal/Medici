@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/solution-items/">
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Medici.Abstractions/Medici.Abstractions.csproj" />
+    <Project Path="src/Medici.Behaviors.Validation/Medici.Behaviors.Validation.csproj" Id="c6ab3ab7-fcbe-45d1-884a-163b89a5f1c1" />
+    <Project Path="src/Medici.CQRS.Abstractions/Medici.CQRS.Abstractions.csproj" Id="d8d927cd-6fbb-4f12-b101-10a1b724d44f" />
+    <Project Path="src/Medici.DependencyInjection/Medici.DependencyInjection.csproj" />
+    <Project Path="src/Medici.OpenProcessors/Medici.OpenProcessors.csproj" Id="1846b2d6-4fcf-4446-8df6-2dcc0dc60c84" />
+    <Project Path="src/Medici/Medici.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Medici.DependencyInjectionTests/Medici.DependencyInjectionTests.csproj" Id="c451742e-d265-4ded-8a98-b072511c2bfa" />
+    <Project Path="test/Medici.Tests/Medici.Tests.csproj" Id="356666a2-3c94-4e62-a3d7-0d8f2e221eab" />
+  </Folder>
+</Solution>
