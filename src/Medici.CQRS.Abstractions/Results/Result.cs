@@ -91,7 +91,7 @@ namespace Medici.CQRS.Abstractions.Results
             new(error);
 
         protected static Result<TValue> Create<TValue>(TValue? value) =>
-            value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
+            value is not null ? Success(value) : Failure<TValue>(Error.NullValue(value));
 
         protected static Result<TValue> Create<TValue>(Error error) =>
             Failure<TValue>(error);
