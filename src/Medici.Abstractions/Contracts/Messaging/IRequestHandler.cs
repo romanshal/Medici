@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     /// <typeparam name="TResponse"></typeparam>
-    public interface IRequestHandler<in TRequest, TResponse> where TRequest : IRequest<TResponse> 
+    public interface IRequestHandler<in TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         /// <summary>
         /// Handles a reguest

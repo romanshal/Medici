@@ -46,7 +46,7 @@ namespace Medici
             return this;
         }
 
-        public MediciConfiguration RegisterServicesFromAssemblyWithType(Type type) => 
+        public MediciConfiguration RegisterServicesFromAssemblyWithType(Type type) =>
             RegisterServicesFromAssembly(type.Assembly);
 
         public MediciConfiguration RegisterServicesFromAssemblyWithType<T>()
@@ -69,7 +69,7 @@ namespace Medici
             return this;
         }
 
-        public MediciConfiguration AddRequestPreProcessor<TInterfaceType, TImplementationType>(ServiceLifetime serviceLifetime = ServiceLifetime.Transient) => 
+        public MediciConfiguration AddRequestPreProcessor<TInterfaceType, TImplementationType>(ServiceLifetime serviceLifetime = ServiceLifetime.Transient) =>
             AddRequestPreProcessor(typeof(TInterfaceType), typeof(TImplementationType), serviceLifetime);
 
         public MediciConfiguration AddRequestPostProcessor(Type interfaceType, Type implementationType, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
@@ -79,7 +79,7 @@ namespace Medici
             return this;
         }
 
-        public MediciConfiguration AddRequestPostProcessor<TInterfaceType, TImplementationType>(ServiceLifetime serviceLifetime = ServiceLifetime.Transient) => 
+        public MediciConfiguration AddRequestPostProcessor<TInterfaceType, TImplementationType>(ServiceLifetime serviceLifetime = ServiceLifetime.Transient) =>
             AddRequestPostProcessor(typeof(TInterfaceType), typeof(TImplementationType), serviceLifetime);
     }
 }

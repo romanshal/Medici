@@ -4,6 +4,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Authors>romanshal</Authors>
+    <Copyright>Copyright romanshal</Copyright>
+    <PackageProjectUrl>https://github.com/romanshal/Medici</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/romanshal/Medici</RepositoryUrl>
+    <PackageTags>mediator;request;response;queries;commands;validation;openbehavior</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

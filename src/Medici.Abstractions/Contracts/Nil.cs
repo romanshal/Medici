@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Medici.Abstractions.Contracts
+﻿namespace Medici.Abstractions.Contracts
 {
     /// <summary>
     /// Represents a void type, since <see cref="System.Void"/> is not a valid return type in C#.

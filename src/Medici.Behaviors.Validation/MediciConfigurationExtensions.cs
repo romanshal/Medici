@@ -19,6 +19,12 @@ namespace Medici.Behaviors.Validation
             return configuration;
         }
 
+        /// <summary>
+        /// Registers an open validation request pre processor type against the <see cref="IRequestPreProcessor{TRequest}"/> open generic interface type with default custom validator
+        /// </summary>
+        /// <param name="configuration">Configuration options</param>
+        /// <param name="validationType">Validation processor implementation type</param>
+        /// <returns>Configuration options</returns>
         public static MediciConfiguration AddValidationBehavior(this MediciConfiguration configuration, Type validationType)
         {
             var implementedGenericInterfaces = validationType.GetImplementableInterfaces(typeof(IPipelineBehavior<,>)).ToList();
@@ -35,6 +41,12 @@ namespace Medici.Behaviors.Validation
             return configuration;
         }
 
+        /// <summary>
+        /// Registers an open validation request pre processor type against the <see cref="IRequestPreProcessor{TRequest}"/> open generic interface type with default custom validator
+        /// </summary>
+        /// <typeparam name="TValidationType">Validation processor implementation type</typeparam>
+        /// <param name="configuration">Configuration options</param>
+        /// <returns>Configuration options</returns>
         public static MediciConfiguration AddValidationBehavior<TValidationType>(this MediciConfiguration configuration) where TValidationType : IValidationProcess<IRequest>
         {
             configuration.AddOpenPreProcessor(typeof(TValidationType));

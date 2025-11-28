@@ -5,6 +5,13 @@ namespace Medici.OpenProcessors
 {
     public static class MediciConfigurationExtensions
     {
+        /// <summary>
+        /// Registers an open pre processor type against the <see cref="IPipelineBehavior{TRequest,TResponse}"/> open generic interface type
+        /// </summary>
+        /// <param name="configuration">Configuration options</param>
+        /// <param name="openProcessType">An open generic processor type</param>
+        /// <param name="serviceLifetime">Optional service lifetime, defaults to <see cref="ServiceLifetime.Transient"/></param>
+        /// <returns>Configuration options</returns>
         public static MediciConfiguration AddOpenPreProcessor(this MediciConfiguration configuration, Type openProcessType, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
         {
             if (!openProcessType.IsGenericType)
@@ -28,7 +35,14 @@ namespace Medici.OpenProcessors
             return configuration;
         }
 
-        public static MediciConfiguration AddOpenPosrProcessor(this MediciConfiguration configuration, Type openProcessType, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
+        /// <summary>
+        /// Registers an open post processor type against the <see cref="IPipelineBehavior{TRequest,TResponse}"/> open generic interface type
+        /// </summary>
+        /// <param name="configuration">Configuration options</param>
+        /// <param name="openProcessType">An open generic processor type</param>
+        /// <param name="serviceLifetime">Optional service lifetime, defaults to <see cref="ServiceLifetime.Transient"/></param>
+        /// <returns>Configuration options</returns>
+        public static MediciConfiguration AddOpenPostProcessor(this MediciConfiguration configuration, Type openProcessType, ServiceLifetime serviceLifetime = ServiceLifetime.Transient)
         {
             if (!openProcessType.IsGenericType)
             {

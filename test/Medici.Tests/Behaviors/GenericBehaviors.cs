@@ -5,7 +5,7 @@ using Medici.Tests.Contracts;
 namespace Medici.Tests.Behaviors
 {
     public class GenericInnerBehavior<TRequest, TResponse>(
-        OutputLogger output) : IPipelineBehavior<TRequest, TResponse> 
+        OutputLogger output) : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull, IRequest
     {
         private readonly OutputLogger _output = output;
@@ -21,7 +21,7 @@ namespace Medici.Tests.Behaviors
     }
 
     public class GenericOuterBehavior<TRequest, TResponse>(
-        OutputLogger output) : IPipelineBehavior<TRequest, TResponse> 
+        OutputLogger output) : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull, IRequest
     {
         private readonly OutputLogger _output = output;

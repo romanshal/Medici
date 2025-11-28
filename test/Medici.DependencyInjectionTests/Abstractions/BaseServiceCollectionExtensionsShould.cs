@@ -12,7 +12,7 @@ namespace Medici.DependencyInjectionTests.Abstractions
         private readonly IServiceProvider _provider = fixture.Provider;
 
         [Fact]
-        public void ResolveMedici_WhenServiceExist() => 
+        public void ResolveMedici_WhenServiceExist() =>
             _provider.GetService<IMedici>()
             .Should()
             .NotBeNull();

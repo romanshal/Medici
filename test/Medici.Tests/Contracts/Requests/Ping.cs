@@ -12,7 +12,7 @@ namespace Medici.Tests.Contracts.Requests
         public Task<Pong> HandleAsync(Ping request, CancellationToken cancellationToken = default)
         {
             _output.Messages.Add("Handler");
-            return Task.FromResult(new Pong (request.Message + " Pong"));
+            return Task.FromResult(new Pong(request.Message + " Pong"));
         }
     }
 }

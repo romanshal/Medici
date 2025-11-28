@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using Medici.Abstractions.Contracts.Messaging;
-using Medici.Abstractions.Pipelines;
 
 namespace Medici.Behaviors.Validation
 {

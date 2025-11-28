@@ -5,12 +5,12 @@ using System.Collections.Concurrent;
 namespace Medici
 {
     public class Medici(IServiceProvider serviceProvider) : IMedici
-    {   
+    {
         private readonly IServiceProvider _serviceProvider = serviceProvider;
         private readonly ConcurrentDictionary<Type, RequestHandlerBase> _requestHandlers = new();
 
         public Task<TResponse> SendAsync<TResponse>(
-            IRequest<TResponse> request, 
+            IRequest<TResponse> request,
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(request);

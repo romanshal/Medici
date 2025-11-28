@@ -16,7 +16,7 @@ namespace Medici
     public abstract class RequestHandler : RequestHandlerBase
     {
         public abstract Task<Nil> HandleAsync(
-            IRequest request, 
+            IRequest request,
             IServiceProvider serviceProvider,
             CancellationToken cancellationToken = default);
     }
@@ -32,20 +32,21 @@ namespace Medici
     public class RequestHandlerWrapper<TRequest> : RequestHandler where TRequest : IRequest
     {
         public override async Task<object?> HandleAsync(
-            object request, 
-            IServiceProvider serviceProvider, 
+            object request,
+            IServiceProvider serviceProvider,
             CancellationToken cancellationToken = default) =>
             await HandleAsync((IRequest)request, serviceProvider, cancellationToken).ConfigureAwait(false);
 
         public override Task<Nil> HandleAsync(
-            IRequest request, 
-            IServiceProvider serviceProvider, 
+            IRequest request,
+            IServiceProvider serviceProvider,
             CancellationToken cancellationToken = default)
         {
-            async Task<Nil> InnerHandler(CancellationToken t = default)
+            async Task<Nil> InnerHandler(CancellationToken token = default)
             {
-                await serviceProvider.GetRequiredService<IRequestHandler<TRequest>>()
-                    .HandleAsync((TRequest)request, t == default ? cancellationToken : t);
+                await serviceProvider
+                    .GetRequiredService<IRequestHandler<TRequest>>()
+                    .HandleAsync((TRequest)request, token == default ? cancellationToken : token);
 
                 return Nil.Value;
             }
@@ -72,8 +73,10 @@ namespace Medici
             IServiceProvider serviceProvider,
             CancellationToken cancellationToken = default)
         {
-            Task<TResponse> InnerHandler(CancellationToken token = default) => serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>()
-                .HandleAsync((TRequest)request, token == default ? cancellationToken : token);
+            Task<TResponse> InnerHandler(CancellationToken token = default) =>
+                serviceProvider
+                    .GetRequiredService<IRequestHandler<TRequest, TResponse>>()
+                    .HandleAsync((TRequest)request, token == default ? cancellationToken : token);
 
             return await serviceProvider
                 .GetServices<IPipelineBehavior<TRequest, TResponse>>()

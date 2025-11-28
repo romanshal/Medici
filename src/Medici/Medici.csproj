@@ -1,17 +1,41 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Authors>romanshal</Authors>
+		<Product>Medici</Product>
+		<Copyright>Copyright romanshal</Copyright>
+		<PackageProjectUrl>https://github.com/romanshal/Medici</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/romanshal/Medici</RepositoryUrl>
+		<PackageTags>mediator;request;response;queries;commands;validation;openbehavior</PackageTags>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageIcon>medici_128x128.png</PackageIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Scrutor" Version="7.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\assets\logo\medici_128x128.png">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Medici.Abstractions\Medici.Abstractions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Scrutor" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Medici.Abstractions\Medici.Abstractions.csproj" />
+	</ItemGroup>
 
 </Project>

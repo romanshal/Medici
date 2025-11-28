@@ -4,7 +4,7 @@ using Medici.Abstractions.Pipelines;
 namespace Medici.Behaviours
 {
     public class RequestPreProcessorBehavior<TRequest, TResponse>(
-        IEnumerable<IRequestPreProcessor<TRequest>> preProcessors) : IPipelineBehavior<TRequest, TResponse> 
+        IEnumerable<IRequestPreProcessor<TRequest>> preProcessors) : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull, IRequest
     {
         private readonly IEnumerable<IRequestPreProcessor<TRequest>> _preProcessors = preProcessors;

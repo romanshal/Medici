@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/solution-items/">
+    <File Path=".github/workflows/build.yml" />
+    <File Path=".github/workflows/deploy-nuget.yml" />
     <File Path=".gitignore" />
     <File Path="LICENSE" />
     <File Path="README.md" />
