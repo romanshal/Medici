@@ -5,13 +5,14 @@ namespace Medici.Tests.Contracts.Requests
 {
     public record Ping(string? Message) : IRequest<Pong>;
 
-    public class PingHandler(OutputLogger output) : IRequestHandler<Ping, Pong>
+    public class PingHandler(Caller caller) : IRequestHandler<Ping, Pong>
     {
-        private readonly OutputLogger _output = output;
+        private readonly Caller _caller = caller;
 
         public Task<Pong> HandleAsync(Ping request, CancellationToken cancellationToken = default)
         {
-            _output.Messages.Add("Handler");
+            _caller.Call();
+            _caller.Messages.Add("Handler");
             return Task.FromResult(new Pong(request.Message + " Pong"));
         }
     }

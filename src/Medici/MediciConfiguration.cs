@@ -25,8 +25,6 @@ namespace Medici
         /// </summary>
         public Queue<ServiceDescriptor> RequestPostProcessors { get; } = new();
 
-        public bool OnlyGenericHandlers { get; set; } = false;
-
         /// <summary>
         /// Mediator implementation type to register. Default is <see cref="Medici"/>
         /// </summary>

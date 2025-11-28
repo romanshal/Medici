@@ -2,7 +2,6 @@
 using Medici.Abstractions.Contracts;
 using Medici.Abstractions.Contracts.Messaging;
 using Medici.Abstractions.Pipelines;
-using Medici.CQRS.Abstractions.Results;
 using Medici.Tests.Behaviors;
 using Medici.Tests.Contracts;
 using Medici.Tests.Contracts.Requests;
@@ -16,7 +15,7 @@ namespace Medici.Tests
         [Fact]
         public async Task ResolveConcreteTypesWithBehaviors()
         {
-            var output = new OutputLogger();
+            var caller = new Caller();
 
             var container = TestDIBuilder.Build(config =>
             {
@@ -29,7 +28,7 @@ namespace Medici.Tests
                         .AsImplementedInterfaces();
                 });
 
-                config.AddSingleton<OutputLogger>(output);
+                config.AddSingleton<Caller>(caller);
                 config.AddTransient<IPipelineBehavior<Ping, Pong>, ConcreteOuterBehavior>();
                 config.AddTransient<IPipelineBehavior<Ping, Pong>, ConcreteInnerBehavior>();
                 config.AddTransient<IMedici, Medici>();
@@ -41,7 +40,7 @@ namespace Medici.Tests
 
             response.Message.Should().Be("Ping Pong");
 
-            output.Messages.Should().BeEquivalentTo([
+            caller.Messages.Should().BeEquivalentTo([
                 "Outer behavior before",
                 "Inner behavior before",
                 "Handler",
@@ -53,7 +52,7 @@ namespace Medici.Tests
         [Fact]
         public async Task ResolveGenericTypesWithBehaviors()
         {
-            var output = new OutputLogger();
+            var caller = new Caller();
             var container = TestDIBuilder.Build(cfg =>
             {
                 cfg.Scan(scanner =>
@@ -64,7 +63,7 @@ namespace Medici.Tests
                             .AssignableTo(typeof(IRequestHandler<,>)))
                         .AsImplementedInterfaces();
                 });
-                cfg.AddSingleton<OutputLogger>(output);
+                cfg.AddSingleton<Caller>(caller);
 
                 cfg.AddTransient(typeof(IPipelineBehavior<,>), typeof(GenericOuterBehavior<,>));
                 cfg.AddTransient(typeof(IPipelineBehavior<,>), typeof(GenericInnerBehavior<,>));
@@ -78,7 +77,7 @@ namespace Medici.Tests
 
             response.Message.Should().Be("Ping Pong");
 
-            output.Messages.Should().BeEquivalentTo([
+            caller.Messages.Should().BeEquivalentTo([
                 "Outer behavior before",
                 "Inner behavior before",
                 "Handler",
@@ -90,7 +89,7 @@ namespace Medici.Tests
         [Fact]
         public async Task ResolveNilTypesWithBehaviors()
         {
-            var output = new OutputLogger();
+            var caller = new Caller();
             var container = TestDIBuilder.Build(cfg =>
             {
                 cfg.Scan(scanner =>
@@ -101,7 +100,7 @@ namespace Medici.Tests
                             .AssignableTo(typeof(IRequestHandler<>)))
                         .AsImplementedInterfaces();
                 });
-                cfg.AddSingleton<OutputLogger>(output);
+                cfg.AddSingleton<Caller>(caller);
 
                 cfg.AddTransient<IPipelineBehavior<NilPing, Nil>, NilOuterBehavior>();
                 cfg.AddTransient<IPipelineBehavior<NilPing, Nil>, NilInnerBehavior>();
@@ -113,7 +112,7 @@ namespace Medici.Tests
 
             await medici.SendAsync(new NilPing("Ping"));
 
-            output.Messages.Should().BeEquivalentTo([
+            caller.Messages.Should().BeEquivalentTo([
                 "Outer nil behavior before",
                 "Inner nil behavior before",
                 "Handler",
@@ -125,7 +124,7 @@ namespace Medici.Tests
         [Fact]
         public async Task ResolveCommandTypesWithBehaviors()
         {
-            var output = new OutputLogger();
+            var caller = new Caller();
 
             var container = TestDIBuilder.Build(config =>
             {
@@ -138,7 +137,7 @@ namespace Medici.Tests
                         .AsImplementedInterfaces();
                 });
 
-                config.AddSingleton<OutputLogger>(output);
+                config.AddSingleton<Caller>(caller);
                 config.AddTransient<IMedici, Medici>();
             });
 
@@ -147,11 +146,11 @@ namespace Medici.Tests
             var response = await medici.SendAsync(new CommandPing("Ping"));
 
             response.IsSuccess.Should().BeTrue();
-            response.Error.Should().BeEquivalentTo(Error.None);
+            response.Error.Should().BeNull();
             response.Value.Should().NotBeNull();
             response.Value.Message.Should().Be("Ping Pong");
 
-            output.Messages.Should().BeEquivalentTo([
+            caller.Messages.Should().BeEquivalentTo([
                 "Handler",
             ]);
         }

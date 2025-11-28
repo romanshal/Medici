@@ -6,30 +6,30 @@ using Medici.Tests.Contracts.Requests;
 namespace Medici.Tests.Behaviors
 {
     public class NilInnerBehavior(
-        OutputLogger output) : IPipelineBehavior<NilPing, Nil>
+        Caller caller) : IPipelineBehavior<NilPing, Nil>
     {
-        private readonly OutputLogger _output = output;
+        private readonly Caller _caller = caller;
 
         public async Task<Nil> Handle(NilPing request, RequestHandlerDelegate<Nil> next, CancellationToken cancellationToken = default)
         {
-            _output.Messages.Add("Inner nil behavior before");
+            _caller.Messages.Add("Inner nil behavior before");
             var response = await next(cancellationToken);
-            _output.Messages.Add("Inner nil behavior after");
+            _caller.Messages.Add("Inner nil behavior after");
 
             return response;
         }
     }
 
     public class NilOuterBehavior(
-        OutputLogger output) : IPipelineBehavior<NilPing, Nil>
+        Caller caller) : IPipelineBehavior<NilPing, Nil>
     {
-        private readonly OutputLogger _output = output;
+        private readonly Caller _caller = caller;
 
         public async Task<Nil> Handle(NilPing request, RequestHandlerDelegate<Nil> next, CancellationToken cancellationToken = default)
         {
-            _output.Messages.Add("Outer nil behavior before");
+            _caller.Messages.Add("Outer nil behavior before");
             var response = await next(cancellationToken);
-            _output.Messages.Add("Outer nil behavior after");
+            _caller.Messages.Add("Outer nil behavior after");
 
             return response;
         }

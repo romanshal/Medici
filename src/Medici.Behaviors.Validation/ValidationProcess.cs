@@ -15,7 +15,9 @@ namespace Medici.Behaviors.Validation
             {
                 var context = new ValidationContext<TRequest>(request);
 
-                var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+                var validationResults = await Task.WhenAll(
+                    _validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+
                 var failures = validationResults
                     .Where(validationResult => !validationResult.IsValid)
                     .SelectMany(validationResult => validationResult.Errors)

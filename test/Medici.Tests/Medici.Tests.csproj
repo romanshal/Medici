@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Medici.CQRS.Abstractions\Medici.CQRS.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Medici.DependencyInjection\Medici.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\src\Medici\Medici.csproj" />
   </ItemGroup>
 

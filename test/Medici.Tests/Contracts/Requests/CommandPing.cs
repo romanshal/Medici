@@ -6,13 +6,14 @@ namespace Medici.Tests.Contracts.Requests
 {
     public record CommandPing(string? Message) : ICommand<Pong>;
 
-    public class CommandPingHandler(OutputLogger output) : ICommandHandler<CommandPing, Pong>
+    public class CommandPingHandler(Caller caller) : ICommandHandler<CommandPing, Pong>
     {
-        private readonly OutputLogger _output = output;
+        private readonly Caller _caller = caller;
 
         public Task<Result<Pong>> HandleAsync(CommandPing request, CancellationToken cancellationToken = default)
         {
-            _output.Messages.Add("Handler");
+            _caller.Call();
+            _caller.Messages.Add("Handler");
             return Task.FromResult(Result.Success(new Pong(request.Message + " Pong")));
         }
     }

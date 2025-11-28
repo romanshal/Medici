@@ -38,11 +38,23 @@ namespace Medici
 
         private void RegisterHandlers()
         {
-            _services.Scan(scan => scan
-                .FromAssemblies(_configuration.Assemblies)
-                .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<,>)))
-                .AsImplementedInterfaces()
-                .WithTransientLifetime());
+            _services
+                .Scan(scan => scan
+                    .FromAssemblies(_configuration.Assemblies)
+                    .AddClasses(c => c.
+                        Where(type =>
+                            type.GetInterfaces().Any(i =>
+                                i.IsGenericType &&
+                                i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>))))
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime()
+                    .AddClasses(c => c
+                        .Where(type =>
+                            type.GetInterfaces().Any(i =>
+                                i.IsGenericType &&
+                                i.GetGenericTypeDefinition() == typeof(IRequestHandler<>))))
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime());
         }
 
         private void RegisterPipeline()
