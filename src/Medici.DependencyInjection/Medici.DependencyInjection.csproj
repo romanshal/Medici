@@ -1,18 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Authors>romanshal</Authors>
+		<Copyright>Copyright romanshal</Copyright>
+		<PackageProjectUrl>https://github.com/romanshal/Medici</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/romanshal/Medici</RepositoryUrl>
+		<PackageTags>mediator;request;response;queries;commands;validation;openbehavior</PackageTags>
+		<PackageIcon>medici_128x128.png</PackageIcon>
+		<Description>Simple implementation of mediator pattern in .NET</Description>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+	  <None Include="..\..\assets\logo\medici_128x128.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Medici.Abstractions\Medici.Abstractions.csproj" />
-    <ProjectReference Include="..\Medici\Medici.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Medici.Abstractions\Medici.Abstractions.csproj" />
+		<ProjectReference Include="..\Medici\Medici.csproj" />
+	</ItemGroup>
 
 </Project>
