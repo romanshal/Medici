@@ -1,5 +1,7 @@
 # Medici
 
+[![NuGet](https://img.shields.io/nuget/v/medici.svg)](https://www.nuget.org/packages/medici)
+
 Just another simple mediator implementation library.
 
 ## How to use it?
