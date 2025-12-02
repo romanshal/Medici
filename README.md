@@ -9,6 +9,7 @@ First you need to install the according packages from NuGet:
 - `Medici` contains the implementations for the abstractions above
 - `Medici.DependencyInjection` contains basic extensions for your `IServiceCollection` for proper dependency registration
 - `Medici.CQRS.Abstractions` contains abstract contracts to CQRS and Result patterns
+- `Medici.Behaviors.Validation` contains simple validation pre-processor realisation
 - `Medici.OpenProcessors` contains the implementations for open pre/post behavior
 
 ## Message types
