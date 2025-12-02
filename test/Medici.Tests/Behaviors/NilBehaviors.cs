@@ -1,6 +1,5 @@
 ﻿using Medici.Abstractions.Contracts;
 using Medici.Abstractions.Pipelines;
-using Medici.Tests.Contracts;
 using Medici.Tests.Contracts.Requests;
 
 namespace Medici.Tests.Behaviors

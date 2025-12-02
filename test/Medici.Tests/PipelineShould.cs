@@ -3,7 +3,6 @@ using Medici.Abstractions.Contracts;
 using Medici.Abstractions.Contracts.Messaging;
 using Medici.Abstractions.Pipelines;
 using Medici.Tests.Behaviors;
-using Medici.Tests.Contracts;
 using Medici.Tests.Contracts.Requests;
 using Medici.Tests.Contracts.Responses;
 using Microsoft.Extensions.DependencyInjection;

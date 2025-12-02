@@ -3,7 +3,6 @@ using Medici.Abstractions.Contracts;
 using Medici.DependencyInjection;
 using Medici.Tests.Contracts.Requests;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyModel;
 
 namespace Medici.Tests
 {
@@ -11,7 +10,7 @@ namespace Medici.Tests
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IMedici _medici;
-        private readonly Caller _caller; 
+        private readonly Caller _caller;
 
         public RequestHandlerShould()
         {
