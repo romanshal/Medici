@@ -22,5 +22,17 @@ namespace Medici.DependencyInjectionTests.Abstractions
             _provider.GetService<IRequestHandler<Ping, Pong>>()
             .Should()
             .NotBeNull();
+
+        [Fact]
+        public void ResolveInternalRequestHandler_WhenHandlerExist() =>
+            _provider.GetService<IRequestHandler<InternalPing, Pong>>()
+            .Should()
+            .NotBeNull();
+
+        [Fact]
+        public void ResolvePrivateRequestHandler_WhenHandlerExist() =>
+            _provider.GetService<IRequestHandler<PrivatePing, Pong>>()
+            .Should()
+            .NotBeNull();
     }
 }

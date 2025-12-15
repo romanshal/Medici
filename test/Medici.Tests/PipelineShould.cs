@@ -2,6 +2,7 @@
 using Medici.Abstractions.Contracts;
 using Medici.Abstractions.Contracts.Messaging;
 using Medici.Abstractions.Pipelines;
+using Medici.CQRS.Abstractions.Results;
 using Medici.Tests.Behaviors;
 using Medici.Tests.Contracts.Requests;
 using Medici.Tests.Contracts.Responses;
@@ -138,6 +139,9 @@ namespace Medici.Tests
 
                 config.AddSingleton<Caller>(caller);
                 config.AddTransient<IMedici, Medici>();
+
+                config.AddTransient<IPipelineBehavior<CommandPing, Result<Pong>>, OuterCommandBehaviors>();
+                config.AddTransient<IPipelineBehavior<CommandPing, Result<Pong>>, InnerCommandBehaviors>();
             });
 
             var medici = container.GetRequiredService<IMedici>();
@@ -150,7 +154,11 @@ namespace Medici.Tests
             response.Value.Message.Should().Be("Ping Pong");
 
             caller.Messages.Should().BeEquivalentTo([
+                "Outer behavior before",
+                "Inner behavior before",
                 "Handler",
+                "Inner behavior after",
+                "Outer behavior after"
             ]);
         }
     }

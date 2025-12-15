@@ -41,18 +41,18 @@ namespace Medici
             _services
                 .Scan(scan => scan
                     .FromAssemblies(_configuration.Assemblies)
-                    .AddClasses(c => c.
-                        Where(type =>
+                    .AddClasses(c => c
+                        .Where(type =>
                             type.GetInterfaces().Any(i =>
                                 i.IsGenericType &&
-                                i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>))))
+                                i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>))), publicOnly: false)
                     .AsImplementedInterfaces()
                     .WithTransientLifetime()
                     .AddClasses(c => c
                         .Where(type =>
                             type.GetInterfaces().Any(i =>
                                 i.IsGenericType &&
-                                i.GetGenericTypeDefinition() == typeof(IRequestHandler<>))))
+                                i.GetGenericTypeDefinition() == typeof(IRequestHandler<>))), publicOnly: false)
                     .AsImplementedInterfaces()
                     .WithTransientLifetime());
         }
